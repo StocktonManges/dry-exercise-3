@@ -7,9 +7,13 @@
 class CsvValidation {
   constructor(product) {
     this.product = product;
+    this.productProperties = ['color', 'size', 'style'];
   }
 
   validateProduct(product) {
+
+    /* Old Code
+
     if (!product.color) {
       throw new Error("Import failed: The product [color] is missing");
     }
@@ -19,7 +23,17 @@ class CsvValidation {
     if (!product.style) {
       throw new Error("Import failed: The product [style] is missing");
     }
+    console.log("VALID: PASSED"); 
+    */
+
+    /* New Code */
+    for (const value of this.productProperties) {
+      if (!product[value]) {
+        throw new Error(`Import failed: The product ${value} is missing`);
+      }
+    }
     console.log("VALID: PASSED");
+
   }
 }
 
